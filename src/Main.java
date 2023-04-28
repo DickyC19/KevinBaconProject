@@ -43,5 +43,7 @@ public class Main {
         System.out.println(actor + " has a Bacon Number of " + baconNumber);
     }
 
-    
+    private static Object findConnection(ArrayList<SimpleMovie> movies) {
+
+    }
 }
