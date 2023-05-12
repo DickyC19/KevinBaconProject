@@ -15,7 +15,7 @@ public class Main {
         String actor = scan.nextLine();
         pathway.add(actor);
 
-        findConnection();
+        findConnection(actor);
 
         pathway.add(kevin);
         String path = "";
@@ -26,9 +26,9 @@ public class Main {
         System.out.println(actor + " has a Bacon Number of " + baconNumber);
     }
 
-    private static Object findConnection() {
-        ArrayList<SimpleMovie> kevinMovies = new ArrayList<>();
-        ArrayList<SimpleMovie> actorMovies = new ArrayList<>();
+    private static Object findConnection(String actor) {
+        ArrayList<Object> kevinMovies = new ArrayList<>();
+        ArrayList<Object> actorMovies = new ArrayList<>();
 
         for (SimpleMovie movie : movies) {
             if (movie.getActors().contains(actor)) {
@@ -39,13 +39,59 @@ public class Main {
             }
         }
 
-        for (SimpleMovie movie : kevinMovies) {
+        for (Object movie : kevinMovies) {
             if (actorMovies.contains(movie)) {
-                pathway.add(movie.getTitle());
+                pathway.add(((SimpleMovie) movie).getTitle());
                 baconNumber ++;
-                break;
+                return movie;
             }
         }
-        findConnection();
+
+        return findConnection(actorMovies, kevinMovies);
     }
+
+    private static Object findConnection(ArrayList<Object> obj1, ArrayList<Object> obj2) {
+
+        // maybe done?
+        if (obj1.get(0) instanceof SimpleMovie) {
+            ArrayList<Object> kevinMovies = new ArrayList<>();
+            ArrayList<Object> actorMovies = new ArrayList<>();
+
+            for (Object movie : obj1) {
+                actorMovies.addAll(((SimpleMovie) movie).getActors());
+            }
+            for (Object movie : obj2) {
+                kevinMovies.addAll(((SimpleMovie) movie).getActors());
+            }
+
+            for (Object movie : kevinMovies) {
+                if (actorMovies.contains(movie)) {
+                    pathway.add(((SimpleMovie) movie).getTitle());
+                    baconNumber ++;
+                    return movie;
+                }
+            }
+            findConnection(actorMovies, kevinMovies);
+
+
+
+        } else {
+
+
+            ArrayList<String> kevinMoviesActors = new ArrayList<>();
+            ArrayList<String> moviesActors = new ArrayList<>();
+            obj1 = (String) obj1;
+            for (String )
+            for (SimpleMovie movie : movies) {
+                if (movie.getTitle().equals) {
+                    for (String actors : movie.getActors()) {
+                        moviesActors.add(actors);
+                    }
+                }
+            }
+        }
+
+    }
+
+
 }
