@@ -52,8 +52,21 @@ public class Main {
 
     private static Object findConnection(ArrayList<Object> obj1, ArrayList<Object> obj2) {
 
-        // maybe done?
+        // noooooooooooooooooooooooooooooooooooooooooooo fuck fuck fuck fuck fuck
         if (obj1.get(0) instanceof SimpleMovie) {
+            ArrayList<String> kevinMoviesActors = new ArrayList<>();
+            ArrayList<String> moviesActors = new ArrayList<>();
+            obj1 = (String) obj1;
+            for (String )
+                for (SimpleMovie movie : movies) {
+                    if (movie.getTitle().equals) {
+                        for (String actors : movie.getActors()) {
+                            moviesActors.add(actors);
+                        }
+                    }
+                }
+
+        } else {
             ArrayList<Object> kevinMovies = new ArrayList<>();
             ArrayList<Object> actorMovies = new ArrayList<>();
 
@@ -71,24 +84,9 @@ public class Main {
                     return movie;
                 }
             }
+
             findConnection(actorMovies, kevinMovies);
 
-
-
-        } else {
-
-
-            ArrayList<String> kevinMoviesActors = new ArrayList<>();
-            ArrayList<String> moviesActors = new ArrayList<>();
-            obj1 = (String) obj1;
-            for (String )
-            for (SimpleMovie movie : movies) {
-                if (movie.getTitle().equals) {
-                    for (String actors : movie.getActors()) {
-                        moviesActors.add(actors);
-                    }
-                }
-            }
         }
 
     }
