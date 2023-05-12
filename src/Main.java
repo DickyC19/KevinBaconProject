@@ -67,6 +67,9 @@ public class Main {
                 }
 
         } else {
+
+            // obj 1 and obj 2 are arraylists of actors so fuck fuck fuck
+            // change line 76 and 79 to search for movies with the actors
             ArrayList<Object> kevinMovies = new ArrayList<>();
             ArrayList<Object> actorMovies = new ArrayList<>();
 
