@@ -73,6 +73,7 @@ public class Main {
 
     private static Object findConnection(ArrayList<Object> obj1, ArrayList<Object> obj2) {
         System.out.println(2);
+
         baconNumber ++;
         ArrayList<Object> actorMovies = new ArrayList<>();
         ArrayList<Object> kevinMovies = new ArrayList<>();
@@ -91,8 +92,10 @@ public class Main {
                     return actor;
                 }
             }
+
         } else { //if the parameter for findConnection is an actor
             System.out.println(4);
+
             baconNumber ++;
             for (Object actor : obj1) {
                 for (SimpleMovie movie : movies) {
