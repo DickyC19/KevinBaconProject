@@ -14,6 +14,7 @@ public class Main {
         String actor = "aldsjaklf";
 
         while (!actor.equals("q")) {
+            boolean broken = false;
             String path = "";
             pathway = new ArrayList<>();
             baconNumber = 0;
@@ -32,12 +33,19 @@ public class Main {
             while (!allActors.contains(actor)) {
                 System.out.print("There is no actor by that name\nPlease input an actor to search for: ");
                 actor = scan.nextLine();
+                if (actor.equals("q")) {
+                    broken = true;
+                    break;
+                }
                 allActors = new ArrayList<>();
                 for (SimpleMovie movie : movies) {
                     allActors.addAll(movie.getActors());
                 }
             }
 
+            if (broken) {
+                break;
+            }
             if (!actor.equals(kevin)) {
                 findConnection(actor);
             }
