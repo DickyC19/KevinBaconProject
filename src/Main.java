@@ -1,6 +1,7 @@
 import java.util.ArrayList;
 import java.util.Locale;
 import java.util.Scanner;
+import java.util.SimpleTimeZone;
 
 public class Main {
     private static final Scanner scan = new Scanner(System.in);
@@ -22,6 +23,10 @@ public class Main {
             System.out.print("\nInput an actor to search for (Please capitalize correctly) (Type \"q\" to quit): ");
 
             actor = scan.nextLine();
+            if (actor.equals("q")) {
+                broken = true;
+                break;
+            }
             pathway.add(actor);
 
             ArrayList<String> allActors = new ArrayList<>();
@@ -33,10 +38,6 @@ public class Main {
             while (!allActors.contains(actor)) {
                 System.out.print("There is no actor by that name\nPlease input an actor to search for: ");
                 actor = scan.nextLine();
-                if (actor.equals("q")) {
-                    broken = true;
-                    break;
-                }
                 allActors = new ArrayList<>();
                 for (SimpleMovie movie : movies) {
                     allActors.addAll(movie.getActors());
@@ -155,8 +156,8 @@ public class Main {
         Object connection = findConnection(actorMovies, kevinMovies);
 
         // develops the pathway to connection
-        if (connection instanceof SimpleMovie) {
-
+        if (obj1.get(0) instanceof SimpleMovie) {
+            System.out.println(connection);
             Object connectedMovie = pathway.get(pathway.size() - 1);
 
             // first half of the pathway
@@ -177,6 +178,8 @@ public class Main {
             // second half of the pathway
             for (Object movie : obj2) {
                 for (Object actor : kevinMovies) {
+                    // simple movie connected movie maybe the issue?
+
                     if (((SimpleMovie) movie).getActors().contains((String) actor) && (((SimpleMovie) connectedMovie).getActors().contains(actor))) {
                         pathway.add(actor);
                         return pathway.get(1);
@@ -186,6 +189,7 @@ public class Main {
         } else {
 
             // first half of the pathway
+            System.out.println(connection);
             for (Object actor : obj1) {
                 boolean broken = false;
                 for (Object movie : actorMovies) {
