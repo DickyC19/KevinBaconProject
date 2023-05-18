@@ -9,6 +9,7 @@ public class Main {
     private static ArrayList<Object> pathway = new ArrayList<>();
     private static int baconNumber = 0;
     private static final String kevin = "Kevin Bacon";
+
     public static void main(String[] args) {
         System.out.println("Welcome to The 6 Degrees of Kevin Bacon");
 
@@ -24,9 +25,9 @@ public class Main {
 
             actor = scan.nextLine();
             if (actor.equals("q")) {
-                broken = true;
                 break;
             }
+
             pathway.add(actor);
 
             ArrayList<String> allActors = new ArrayList<>();
@@ -44,9 +45,6 @@ public class Main {
                 }
             }
 
-            if (broken) {
-                break;
-            }
             if (!actor.equals(kevin)) {
                 findConnection(actor);
             }
@@ -154,10 +152,8 @@ public class Main {
         }
 
         Object connection = findConnection(actorMovies, kevinMovies);
-
         // develops the pathway to connection
-        if (obj1.get(0) instanceof SimpleMovie) {
-            System.out.println(connection);
+        if (connection instanceof SimpleMovie) {
             Object connectedMovie = pathway.get(pathway.size() - 1);
 
             // first half of the pathway
@@ -178,8 +174,6 @@ public class Main {
             // second half of the pathway
             for (Object movie : obj2) {
                 for (Object actor : kevinMovies) {
-                    // simple movie connected movie maybe the issue?
-
                     if (((SimpleMovie) movie).getActors().contains((String) actor) && (((SimpleMovie) connectedMovie).getActors().contains(actor))) {
                         pathway.add(actor);
                         return pathway.get(1);
@@ -189,10 +183,9 @@ public class Main {
         } else {
 
             // first half of the pathway
-            System.out.println(connection);
-            for (Object actor : obj1) {
+            for (Object movie : actorMovies) {
                 boolean broken = false;
-                for (Object movie : actorMovies) {
+                for (Object actor : obj1) {
                     if (((SimpleMovie) movie).getActors().contains((String) actor) && ((SimpleMovie) movie).getActors().contains((String) connection)) {
                         pathway.add(1,  movie);
                         broken = true;
@@ -205,8 +198,8 @@ public class Main {
             }
 
             // second half of the pathway
-            for (Object actor : obj2) {
-                for (Object movie : actorMovies) {
+            for (Object movie : kevinMovies) {
+                for (Object actor : obj2) {
                     if (((SimpleMovie) movie).getActors().contains((String) actor) && ((SimpleMovie) movie).getActors().contains(pathway.get(pathway.size() - 1))) {
                         pathway.add(movie);
                         return pathway.get(1);
@@ -214,6 +207,7 @@ public class Main {
                 }
             }
         }
+
         return pathway.get(1); // random return
     }
 }
